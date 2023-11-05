@@ -1,0 +1,48 @@
+- Frecus Tudor George - Tema_3PC - ʕ ᵒ ᴥ ᵒʔ
+
+-> Storage structure :
+ I am storing the image as a structure composed of 4 matrixes, 1 for grayscale
+and 3 for rgb. The matrixes type is unsigned char.
+
+-> The cases :
+  -LOAD-
+  When loading the image i first check if the input_file actually exists,
+ in which case i open the images, reading them in binary, 
+ after i allocate space for 1 matrix(grayscale) or 3(rgb)
+ after which i call i call the functions read_rgb and read_grayscale
+ to populate the matrixes.
+ 
+  -SELECT-
+ I read the coordinates, the first one, x1, i read as a string with which i check the SELECT ALL case.
+ If i select part of the image i proceed by converting the x1 into an int,
+then i check if the selection is valid💯 or not.
+
+  -SAVE-
+ With fgets() i read the whole line, after which i separate the name of the
+file, if the file is saved as "ascii" then i write all the values using frprintf, if it isn t i write them in binary using fwrite.
+ I save the header as ascii indiferently of the type.
+ 
+  -ROTATE-
+ I check if the selection is valid💯, in which case i allocate space for either
+ 1 or 3 matrixes, i call the functions rotate_img(for the whole image) and rotate_square(for part of the selection), in either cases i rotate the matrix by 90° line by line from top to bottom moving them to the columns from right to left.
+ 
+  -CROP-
+ I check if a matrix is loaded or not, then i alloc an auxiliary matrix for 
+only the dimensions of the selection, after which i populate the aux matrix
+then i make the aux matrix the primary one.
+
+  -APPLY-
+ I implemented this functionality by first checking if any of the coordinates
+are on the edges of the image, after this i apply the effect localy in the primary matrix by creating an auxiliary matrix in which i copy the main one.
+Then i go pixel by pixel, applying for each one the values for the effect.
+ And in the end i free the auxiliary matrixes.
+ 
+  -EXIT-
+ I check if an image is loaded then i free all the allocated memory.
+
+  -ALSO-
+ *I implemented a garbage collector to catch any unwanted input (i hope).
+ *Thanks for reading my manifesto.
+
+ʕノ•ᴥ•ʔノ ︵ ┻━┻
+
